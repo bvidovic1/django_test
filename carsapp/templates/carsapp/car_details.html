@@ -1,0 +1,45 @@
+{# carsapp/car_details.html #}
+{% extends 'carsapp/base.html' %}
+
+{% load staticfiles i18n static %}
+{% block title %}
+cars > details
+{% endblock%}
+
+{% block page_content %}
+
+{% for message in messages %}
+    <div class="row">
+        <div class="small-12 column">
+            <div class="callout alert" data-closable>
+                <p> {{message}} </p>
+                <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% if car %}
+<h1>{{car.title}}</h1>
+<div>
+<p>Company: {{ car.company}}</p>
+<p>Year: {{car.year}}</p>
+<p><span class="radio">Engine Type: {{car.get_engine_type_display}}</span></p>
+</div>
+<div>
+    <a href="{% url 'cars:car_edit' car_id=car.id %}"><button>Edit</button></a>
+    <a href="{% url 'cars:car_delete' car_id=car.id %}"><button>Delete</button></a>
+</div>
+{% else %}
+
+<div>
+    Car not found... <a href="{% url 'cars:car_list' %}">Back to cars list</a>
+</div>
+
+{% endif %}
+<br>
+<a href="{% url 'cars:car_list' %}"><button>Back to cars list</button></a>
+{% endblock %}

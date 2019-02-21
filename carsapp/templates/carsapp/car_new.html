@@ -1,0 +1,20 @@
+{# carsapp/car_new.html #}
+{% extends 'carsapp/base.html' %}
+
+{% load staticfiles i18n static %}
+{% block title %}
+cars > new
+{% endblock%}
+
+{% block page_content %}
+<h1>Add new car view</h1>
+<div>
+    <form action="{% url 'cars:car_new' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<br>
+    <a href="{% url 'cars:car_list' %}"><button>Cancel</button></a>
+{% endblock %}

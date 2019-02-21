@@ -1,0 +1,44 @@
+{# carsapp/car_list.html #}
+{% extends 'carsapp/base.html' %}
+
+{% load staticfiles i18n static %}
+
+{% block title %}
+cars>list
+{% endblock %}
+
+{% block page_content %}
+<form action="{% url 'cars:car_search' %}" method='GET'>
+  {% csrf_token %}
+  <input placeholder="Search here..." name="usr_query" type="text">
+  <button type="submit">Search</button>
+</form>
+
+<h1>Car List View</h1>
+<div>
+    <ul>
+        {% for car in cars %}
+            <li><a href="{% url 'cars:car_details' car_id=car.id %}">{{car.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+    <span class="step-links">
+        {% if cars.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ cars.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ cars.number }} of {{ cars.paginator.num_pages }}.
+        </span>
+
+        {% if cars.has_next %}
+            <a href="?page={{ cars.next_page_number }}">next</a>
+            <a href="?page={{ cars.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    <br>
+    <a href="{% url 'cars:car_new' %}"><button>Add new car</button></a>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{# carsapp/car_search.html #}
+{% extends 'carsapp/base.html' %}
+
+{% load staticfiles i18n static %}
+{% block title %}
+cars > search
+{% endblock%}
+
+{% block page_content %}
+<h1>Car Search view.</h1>
+
+<div>You searched for:
+{% if query_results %}
+Found the following items:
+<ol>
+{% for result in query_results %}
+    <li>{{result}}</li>
+{% endfor %}
+</ol>
+{% endif %}
+</div>
+
+{% endblock %}

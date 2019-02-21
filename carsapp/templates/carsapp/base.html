@@ -1,0 +1,20 @@
+{# carsapp/base.html #}
+{% load staticfiles i18n static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <title>{%block title%} Used cars site {% endblock %}</title>
+</head>
+<body>
+    {% block nav %}
+        <ul id="nav">
+            <li>{% block nav-home %}<a href="}">Home</a>{% endblock %}</li>
+            <li>{% block nav-about %}<a href="{% url 'cars:car_list' %}">CarsApp</a>{% endblock %}</li>
+        </ul>
+    {% endblock %}
+    {% block page_content %}
+    {% endblock %}
+</body>
+</html>

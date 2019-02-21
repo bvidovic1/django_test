@@ -1,0 +1,11 @@
+{# carsapp/index.html #}
+{% extends 'carsapp/base.html' %}
+
+{% load staticfiles i18n static %}
+
+{% block page_content %}
+<title>{%block title%} Cars App Page {% endblock %}</title>
+<h1>Car App index view.</h1>
+<p>Current time: {{current_time|time:"H:i:s"}}.</p>
+<p>Current date: {{current_time|date:"d.m.Y."}}</p>
+{% endblock %}
